@@ -10,7 +10,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
-lvim.colorscheme = "tokyonight"
+lvim.colorscheme = "catppuccin-macchiato"
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 12
 vim.opt.sidescrolloff = 12
@@ -73,6 +73,9 @@ lvim.builtin.terminal.active = true
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
 lvim.builtin.nvimtree.setup.auto_reload_on_write = true
+
+-- lualine settings
+lvim.builtin.lualine.style = 'default'
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
@@ -209,6 +212,16 @@ lvim.plugins = {
             prev = '<C-k>',
             dismiss = '<C-esc>'
           }
+        }
+      })
+    end
+  },
+  {
+    'windwp/nvim-ts-autotag',
+    config = function()
+      require('nvim-ts-autotag').setup({
+        autotag = {
+          enable = true,
         }
       })
     end
