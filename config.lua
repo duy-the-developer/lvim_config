@@ -10,7 +10,7 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
-lvim.colorscheme = "catppuccin-macchiato"
+lvim.colorscheme = "gruvbox"
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 12
 vim.opt.sidescrolloff = 12
@@ -225,6 +225,9 @@ lvim.plugins = {
         }
       })
     end
+  },
+  {
+    'morhetz/gruvbox'
   }
 }
 
