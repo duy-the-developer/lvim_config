@@ -10,10 +10,12 @@ an executable
 -- general
 lvim.log.level = "warn"
 lvim.format_on_save.enabled = true
-lvim.colorscheme = "gruvbox"
+lvim.colorscheme = "tokyonight-day"
 vim.opt.relativenumber = true
 vim.opt.scrolloff = 12
 vim.opt.sidescrolloff = 12
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
 
 -- to disable icons and use a minimalist setup, uncomment the following
 -- lvim.use_icons = false
@@ -57,10 +59,10 @@ lvim.keys.normal_mode["<S-h>"] = ":BufferLineCyclePrev<CR>"
 -- }
 
 lvim.builtin.which_key.mappings["t"] = {
-  name = "+Terminal",
-  f = { "<cmd>ToggleTerm direction=float<cr>", "floating" },
-  h = { "<cmd>ToggleTerm direction=horizontal<cr>", "horizontal" },
-  v = { "<cmd>ToggleTerm direction=vertical size=50 <cr>", "vertical" },
+    name = "+Terminal",
+    f = { "<cmd>ToggleTerm direction=float<cr>", "floating" },
+    h = { "<cmd>ToggleTerm direction=horizontal<cr>", "horizontal" },
+    v = { "<cmd>ToggleTerm direction=vertical size=50 <cr>", "vertical" },
 }
 
 -- TODO: User Config for predefined plugins
@@ -79,18 +81,18 @@ lvim.builtin.lualine.style = 'default'
 
 -- if you don't want all the parsers change this to a table of the ones you want
 lvim.builtin.treesitter.ensure_installed = {
-  "bash",
-  "c",
-  "javascript",
-  "json",
-  "lua",
-  "python",
-  "typescript",
-  "tsx",
-  "css",
-  "rust",
-  "java",
-  "yaml",
+    "bash",
+    "c",
+    "javascript",
+    "json",
+    "lua",
+    "python",
+    "typescript",
+    "tsx",
+    "css",
+    "rust",
+    "java",
+    "yaml",
 }
 
 lvim.builtin.treesitter.ignore_install = { "haskell" }
@@ -140,17 +142,17 @@ lvim.lsp.installer.setup.automatic_installation = false
 -- -- set a formatter, this will override the language server formatting capabilities (if it exists)
 local formatters = require "lvim.lsp.null-ls.formatters"
 formatters.setup {
-  { command = "black", filetypes = { "python" } },
-  { command = "isort", filetypes = { "python" } },
-  {
-    -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "prettierd",
-    ---@usage arguments to pass to the formatter
-    -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
-    extra_args = { "--print-with=80" },
-    ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
-    -- filetypes = { "typescript", "typescriptreact", "javascript", "css", "scss", "html", "json" },
-  },
+    { command = "black", filetypes = { "python" } },
+    { command = "isort", filetypes = { "python" } },
+    {
+        -- each formatter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+        command = "prettierd",
+        ---@usage arguments to pass to the formatter
+        -- these cannot contain whitespaces, options such as `--line-width 80` become either `{'--line-width', '80'}` or `{'--line-width=80'}`
+        extra_args = { "--print-with=80" },
+        ---@usage specify which filetypes to enable. By default a providers will attach to all the filetypes it supports.
+        -- filetypes = { "typescript", "typescriptreact", "javascript", "css", "scss", "html", "json" },
+    },
 }
 
 -- -- set additional linters
@@ -173,69 +175,103 @@ formatters.setup {
 
 -- Additional Plugins
 lvim.plugins = {
-  --     {
-  --       "folke/trouble.nvim",
-  --       cmd = "TroubleToggle",
-  --     },
-  {
-    'catppuccin/nvim',
-    as = 'catppuccin',
-    config = function()
-      require('catppuccin').setup({
-        flavour = 'latte',
-        background = {
-          light = 'latte',
-          dark = 'mocha'
-        }
-      })
-    end
-  },
-  {
-    'zbirenbaum/copilot.lua',
-    config = function()
-      require('copilot').setup({
-        panel = {
-          enabled = true,
-          auto_refresh = false,
-          layout = {
-            position = 'right',
-            ratio = 0.3
-          }
-        },
-        suggestion = {
-          enabled = true,
-          auto_trigger = true,
-          debounce = 75,
-          keymap = {
-            accept = '<C-l>',
-            next = '<C-j>',
-            prev = '<C-k>',
-            dismiss = '<C-esc>'
-          }
-        }
-      })
-    end
-  },
-  {
-    'windwp/nvim-ts-autotag',
-    config = function()
-      require('nvim-ts-autotag').setup({
-        autotag = {
-          enable = true,
-        }
-      })
-    end
-  },
-  {
-    'morhetz/gruvbox'
-  }
+    --     {
+    --       "folke/trouble.nvim",
+    --       cmd = "TroubleToggle",
+    --     },
+    {
+        'catppuccin/nvim',
+        as = 'catppuccin',
+        config = function()
+            require('catppuccin').setup({
+                flavour = 'latte',
+                background = {
+                    light = 'latte',
+                    dark = 'mocha'
+                }
+            })
+        end
+    },
+    {
+        'zbirenbaum/copilot.lua',
+        config = function()
+            require('copilot').setup({
+                panel = {
+                    enabled = true,
+                    auto_refresh = false,
+                    layout = {
+                        position = 'right',
+                        ratio = 0.3
+                    }
+                },
+                suggestion = {
+                    enabled = true,
+                    auto_trigger = true,
+                    debounce = 75,
+                    keymap = {
+                        accept = '<C-l>',
+                        next = '<C-j>',
+                        prev = '<C-k>',
+                        dismiss = '<C-esc>'
+                    }
+                }
+            })
+        end
+    },
+    {
+        'windwp/nvim-ts-autotag',
+        config = function()
+            require('nvim-ts-autotag').setup({
+                autotag = {
+                    enable = true,
+                }
+            })
+        end
+    },
+    {
+        'morhetz/gruvbox'
+    },
+    {
+        'NvChad/nvim-colorizer.lua',
+        config = function()
+            require('colorizer').setup(
+                {
+                    filetypes = { "*" },
+                    user_default_options = {
+                        RGB = true,          -- #RGB hex codes
+                        RRGGBB = true,       -- #RRGGBB hex codes
+                        names = true,        -- "Name" codes like Blue or blue
+                        RRGGBBAA = false,    -- #RRGGBBAA hex codes
+                        AARRGGBB = false,    -- 0xAARRGGBB hex codes
+                        rgb_fn = false,      -- CSS rgb() and rgba() functions
+                        hsl_fn = false,      -- CSS hsl() and hsla() functions
+                        css = true,          -- Enable all CSS features: rgb_fn, hsl_fn, names, RGB, RRGGBB
+                        css_fn = true,       -- Enable all CSS *functions*: rgb_fn, hsl_fn
+                        -- Available modes for `mode`: foreground, background,  virtualtext
+                        mode = "background", -- Set the display mode.
+                        -- Available methods are false / true / "normal" / "lsp" / "both"
+                        -- True is same as normal
+                        tailwind = true,                                -- Enable tailwind colors
+                        -- parsers can contain values used in |user_default_options|
+                        sass = { enable = true, parsers = { "css" }, }, -- Enable sass colors
+                        virtualtext = "■",
+                        -- update color values even if buffer is not focused
+                        -- example use: cmp_menu, cmp_docs
+                        always_update = false
+                    },
+                    -- all the sub-options of filetypes apply to buftypes
+                    buftypes = {},
+                }
+            )
+        end
+    }
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 vim.api.nvim_create_autocmd("BufEnter", {
-  pattern = { "*.json", "*.jsonc" },
-  -- enable wrap mode for json files only
-  command = "setlocal wrap",
+    pattern = { "*.json", "*.jsonc" },
+    -- enable wrap mode for json files only
+    command = "setlocal wrap",
 })
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
